@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: mybatis
+  thymeleaf:
+    prefix: file:src/main/resources/templates/
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:users;DB_CLOSE_ON_EXIT=TRUE
+    username: yamashun
+    password:
+    initialization-mode: always
+  h2:
+    console:
+      enabled: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
