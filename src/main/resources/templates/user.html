@@ -10,23 +10,30 @@
 <body>
     <div class="container mt-3">
         <h1>ユーザ一覧</h1>
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>ユーザ名</th>
-                    <th>年齢</th>
-                    <th>住所</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- user のデータを表示 -->
-                <td th:text="${user.id}">ID</td>
-                <td th:text="${user.username}">ユーザ名</td>
-                <td th:text="${user.age}">年齢</td>
-                <td th:text="${user.address}">住所</td>
-            </tbody>
-        </table>
+        <!-- 指定したIDのユーザが存在しない場合 -->
+        <div th:if="${errorMessage}">
+            <p th:text="${errorMessage}">指定したユーザは存在しません。</p>
+        </div>
+        <!-- 指定したIDのユーザが存在する場合 -->
+        <div th:if="${user}">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>ユーザ名</th>
+                        <th>年齢</th>
+                        <th>住所</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- user のデータを表示 -->
+                    <td th:text="${user.id}">ID</td>
+                    <td th:text="${user.username}">ユーザ名</td>
+                    <td th:text="${user.age}">年齢</td>
+                    <td th:text="${user.address}">住所</td>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

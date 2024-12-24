@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.mybatis.dto.UserDto;
 import com.example.mybatis.entity.UserEntity;
+import com.example.mybatis.exeption.UserNotFoundExeption;
 import com.example.mybatis.mapper.UserMapper;
 
 @Component
@@ -30,9 +31,13 @@ public class UserLogic {
      * findUserメソッドを呼び出し
      * URLで指定したIDのデータを取得
      */
-    public UserDto findUser(UserDto userDto) {
+    public UserDto findUser(UserDto userDto) throws UserNotFoundExeption {
 
         UserEntity userEntity = userMapper.findUser(userDto.getId());
+
+        if (userEntity == null) {
+            throw new UserNotFoundExeption("指定したユーザは存在しません。");
+        }
         return toDto(userDto, userEntity);
     }
 

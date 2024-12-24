@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mybatis.entity.UserEntity;
+import com.example.mybatis.exeption.UserNotFoundExeption;
 
 @Mapper
 public interface UserMapper {
@@ -17,5 +18,5 @@ public interface UserMapper {
     /**
      * URLで指定したIDのデータを取得
      */
-    UserEntity findUser(int id);
+    UserEntity findUser(int id) throws UserNotFoundExeption;
 }
