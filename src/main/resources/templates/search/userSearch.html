@@ -10,8 +10,15 @@
 <body>
     <div class="container mt-3">
         <h1>ユーザ検索</h1>
+        <form th:action="@{/userInfo}" method="get">
+            <div class="mb-3">
+                <label for="userId" class="form-label">ユーザID</label>
+                <input type="number" class="form-control" id="userId" name="id" required>
+            </div>
+            <button type="submit" class="btn btn-primary">検索</button>
+        </form>
 
-        <a th:href="@{../main}">メイン画面へ戻る</a>
+        <a th:href="@{/main}" class="btn btn-secondary mt-3">メイン画面へ戻る</a>
     </div>
 </body>
 

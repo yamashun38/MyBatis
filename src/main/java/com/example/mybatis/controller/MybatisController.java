@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.mybatis.dto.UserDto;
 import com.example.mybatis.exeption.UserNotFoundExeption;
@@ -20,6 +21,7 @@ public class MybatisController {
 
     @GetMapping("/main")
     public String mybatis() {
+
         return "main";
     }
 
@@ -31,8 +33,29 @@ public class MybatisController {
         return "allUsers";
     }
 
-    @GetMapping("/users/{id}")
-    public String user(@PathVariable("id") int id, Model model) {
+    // @GetMapping("/users/{id}")
+    // public String user(@PathVariable("id") int id, Model model) {
+        
+    //     try {
+    //         UserDto userDto = new UserDto();
+    //         userDto.setId(id);
+    //         userDto = userLogic.findUser(userDto);
+    //         model.addAttribute("user", userDto);
+    //     } catch (UserNotFoundExeption e) {
+    //         model.addAttribute("errorMessage", e.getMessage());
+    //         return "user";
+    //     }
+    //     return "user";
+    // }
+
+    @GetMapping("/userSearch")
+    public String userSearch() {
+
+        return "search/userSearch";
+    }
+
+    @GetMapping("/userInfo")
+    public String user(@RequestParam("id") int id, Model model) {
         
         try {
             UserDto userDto = new UserDto();
@@ -41,9 +64,9 @@ public class MybatisController {
             model.addAttribute("user", userDto);
         } catch (UserNotFoundExeption e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "user";
+            return "search/userInfo";
         }
-        return "user";
+        return "search/userInfo";
     }
 
     @GetMapping("/userEntry")
