@@ -9,7 +9,7 @@
 
 <body>
     <div class="container mt-3">
-        <h1>ユーザ一覧</h1>
+        <h1>検索結果</h1>
         <!-- 指定したIDのユーザが存在しない場合 -->
         <div th:if="${errorMessage}">
             <p th:text="${errorMessage}">指定したユーザは存在しません。</p>
@@ -34,6 +34,8 @@
                 </tbody>
             </table>
         </div>
+
+        <a th:href="@{../main}">メイン画面へ戻る</a>
     </div>
 </body>
 

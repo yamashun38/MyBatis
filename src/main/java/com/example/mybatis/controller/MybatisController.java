@@ -18,12 +18,12 @@ public class MybatisController {
     @Autowired
     private UserLogic userLogic;
 
-    @GetMapping("/mybatis")
+    @GetMapping("/main")
     public String mybatis() {
-        return "index";
+        return "main";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/allUsers")
     public String allUsers(Model model) {
 
         List<UserDto> allUserList = userLogic.findAll();
@@ -44,5 +44,11 @@ public class MybatisController {
             return "user";
         }
         return "user";
+    }
+
+    @GetMapping("/userEntry")
+    public String entry() {
+
+        return "userEntry";
     }
 }
