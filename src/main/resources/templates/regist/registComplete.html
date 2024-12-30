@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>メイン画面</title>
@@ -8,12 +9,13 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <h1>登録完了</h1>
-        
-    </div>
+        <p>ユーザの登録が完了しました。</p>
 
-    <a th:href="@{../allUsers}">ユーザ一覧へ</a>
-    <a th:href="@{../main}">メイン画面へ戻る</a>
+        <a th:href="@{/allUsers}" class="btn btn-secondary mt-3">ユーザ一覧へ</a>
+        <a th:href="@{/main}" class="btn btn-secondary mt-3">メイン画面へ戻る</a>
+    </div>
 </body>
+
 </html>

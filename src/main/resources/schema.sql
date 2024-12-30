@@ -1,6 +1,6 @@
-create table USERS (
-    id NUMBER(3) not NULL PRIMARY KEY,
-    username VARCHAR2(20) not NULL,
-    age NUMBER(3),
-    address VARCHAR2(20)
+CREATE TABLE USERS(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    age INT,
+    address VARCHAR(50)
 );

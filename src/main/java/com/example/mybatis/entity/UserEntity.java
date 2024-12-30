@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class UserEntity {
     
-    private int id;
+    private Integer id;
     private String username;
-    private int age;
+    private Integer age;
     private String address;
 }

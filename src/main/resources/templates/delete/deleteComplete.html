@@ -9,10 +9,18 @@
 
 <body>
     <div class="container mt-3">
-        <h1>削除完了</h1>
+        <h1>削除結果</h1>
+        <!-- 指定したIDのユーザが存在しない場合 -->
+        <div th:if="${errorMessage}">
+            <p th:text="${errorMessage}">指定したユーザは存在しません。</p>
+        </div>
+        <!-- 指定したIDのユーザが存在する場合 -->
+        <div th:if="${deleteMessage}">
+            <p th:text="${deleteMessage}">削除が完了しました。</p>
+        </div>
 
-        <a th:href="@{../allUsers}">ユーザ一覧へ</a>
-        <a th:href="@{../main}">メイン画面へ</a>
+        <a th:href="@{/allUsers}" class="btn btn-secondary mt-3">ユーザ一覧へ</a>
+        <a th:href="@{/main}" class="btn btn-secondary mt-3">メイン画面へ戻る</a>
     </div>
 </body>
 

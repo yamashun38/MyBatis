@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 import com.example.mybatis.dto.UserDto;
 import com.example.mybatis.entity.UserEntity;
-import com.example.mybatis.exeption.UserNotFoundExeption;
+import com.example.mybatis.exception.DuplicateKeyException;
+import com.example.mybatis.exception.UserNotFoundException;
 import com.example.mybatis.mapper.UserMapper;
 
 @Component
@@ -25,20 +26,6 @@ public class UserLogic {
 
         List<UserEntity> userEntities = userMapper.findAll();
         return toDto(userEntities);
-    }
-
-    /**
-     * findUserメソッドを呼び出し
-     * URLで指定したIDのデータを取得
-     */
-    public UserDto findUser(UserDto userDto) throws UserNotFoundExeption {
-
-        UserEntity userEntity = userMapper.findUser(userDto.getId());
-
-        if (userEntity == null) {
-            throw new UserNotFoundExeption("指定したユーザは存在しません。");
-        }
-        return toDto(userDto, userEntity);
     }
 
     /**
@@ -59,6 +46,20 @@ public class UserLogic {
     }
 
     /**
+     * findUserメソッドを呼び出し
+     * URLで指定したIDのデータを取得
+     */
+    public UserDto findUser(UserDto userDto) throws UserNotFoundException {
+
+        UserEntity userEntity = userMapper.findUser(userDto.getId());
+
+        if (userEntity == null) {
+            throw new UserNotFoundException("指定したユーザは存在しません。");
+        }
+        return toDto(userDto, userEntity);
+    }
+
+    /**
      * UserEntityからUserDtoに変換
      */
     public UserDto toDto(UserDto userDto, UserEntity userEntity) {
@@ -67,5 +68,40 @@ public class UserLogic {
         userDto.setAge(userEntity.getAge());
         userDto.setAddress(userEntity.getAddress());
         return userDto;
+    }
+
+    /**
+     * insertメソッドを呼び出し
+     * データを登録
+     */
+    public void insert(UserDto userDto) throws DuplicateKeyException {
+
+        UserEntity userEntity = toEntity(userDto);
+        userMapper.insert(userEntity);
+    }
+
+    /**
+     * UserDtoからUserEntityに変換
+     */
+    public UserEntity toEntity(UserDto userDto) {
+
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(userDto.getId());
+        userEntity.setUsername(userDto.getUsername());
+        userEntity.setAge(userDto.getAge());
+        userEntity.setAddress(userDto.getAddress());
+        return userEntity;
+    }
+
+    /**
+     * deleteメソッドを呼び出し
+     * データを削除
+     */
+    public void deleteUser(UserDto userDto) throws UserNotFoundException {
+
+        int deleteCount = userMapper.delete(userDto.getId());
+        if(deleteCount == 0) {
+            throw new UserNotFoundException("指定したユーザは存在しません。");
+        }
     }
 }

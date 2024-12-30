@@ -2,11 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.mybatis.mapper.UserMapper">
+
+    <!-- 全ユーザを取得 -->
     <select id="findAll" resultType="com.example.mybatis.entity.UserEntity">
-        select * from users
+        SELECT
+            *
+        FROM
+            users
     </select>
 
+    <!-- 指定されたIDのユーザを取得 -->
     <select id="findUser" resultType="com.example.mybatis.entity.UserEntity">
-        select * from users where id = #{id}
+        SELECT
+            *
+        FROM
+            users
+        WHERE
+            id = #{id}
     </select>
+
+    <!-- 入力された情報を受け取りデータを登録 -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users(
+            username,
+            age,
+            address
+        )
+        VALUES(
+            #{username},
+            #{age},
+            #{address}
+        )
+    </insert>
+
+    <!-- 指定されたIDのユーザを削除 -->
+    <delete id="delete" parameterType="int">
+        DELETE FROM
+            users
+        WHERE
+            id = #{id}
+    </delete>
 </mapper>

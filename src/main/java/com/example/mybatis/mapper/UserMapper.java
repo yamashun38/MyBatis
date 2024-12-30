@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.mybatis.entity.UserEntity;
-import com.example.mybatis.exeption.UserNotFoundExeption;
+import com.example.mybatis.exception.UserNotFoundException;
 
 @Mapper
 public interface UserMapper {
@@ -16,7 +16,17 @@ public interface UserMapper {
     List<UserEntity> findAll();
 
     /**
-     * URLで指定したIDのデータを取得
+     * 入力フォームで指定したIDのデータを取得
      */
-    UserEntity findUser(int id) throws UserNotFoundExeption;
+    UserEntity findUser(int id) throws UserNotFoundException;
+
+    /**
+     * データを登録
+     */
+    void insert(UserEntity userEntity);
+
+    /**
+     * データを削除
+     */
+    int delete(int id) throws UserNotFoundException;
 }
