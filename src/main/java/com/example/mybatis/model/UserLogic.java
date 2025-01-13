@@ -74,7 +74,7 @@ public class UserLogic {
      * insertメソッドを呼び出し
      * データを登録
      */
-    public void insert(UserDto userDto) throws DuplicateKeyException {
+    public void insert(UserDto userDto) {
 
         UserEntity userEntity = toEntity(userDto);
         userMapper.insert(userEntity);
@@ -103,5 +103,14 @@ public class UserLogic {
         if(deleteCount == 0) {
             throw new UserNotFoundException("指定したユーザは存在しません。");
         }
+    }
+
+    /**
+     * updateメソッドを呼び出し
+     */
+    public void updateUser(UserDto userDto) {
+
+        UserEntity userEntity = toEntity(userDto);
+        userMapper.update(userEntity);
     }
 }

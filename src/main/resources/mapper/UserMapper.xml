@@ -42,4 +42,16 @@
         WHERE
             id = #{id}
     </delete>
+
+    <!-- 指定されたIDのユーザ情報を更新 -->
+    <update id="update">
+        UPDATE
+            users
+        SET
+            username = #{username},
+            age = #{age},
+            address = #{address}
+        WHERE
+            id = #{id}
+    </update>
 </mapper>

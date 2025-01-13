@@ -29,4 +29,9 @@ public interface UserMapper {
      * データを削除
      */
     int delete(int id) throws UserNotFoundException;
+
+    /**
+     * データを更新
+     */
+    void update(UserEntity userEntity);
 }

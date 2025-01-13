@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザ選択画面</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-3">
+        <h1>ユーザ選択</h1>
+        <form th:action="@{/userUpdate}" method="get">
+            <div class="mb-3">
+                <label for="userId" class="form-label">ユーザID</label>
+                <input type="number" class="form-control" id="userId" name="id" required>
+            </div>
+            <button type="submit" class="btn btn-primary">進む</button>
+        </form>
+
+        <a th:href="@{/main}" class="btn btn-secondary mt-3">メイン画面へ戻る</a>
+    </div>
+</body>
+
+</html>

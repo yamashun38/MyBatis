@@ -83,7 +83,7 @@ public class MybatisController {
      * ユーザ登録完了画面表示
      */
     @PostMapping("/registComplete")
-    public String regist(@ModelAttribute UserDto userDto) throws DuplicateKeyException {
+    public String regist(@ModelAttribute UserDto userDto) {
 
         userLogic.insert(userDto);
         return "regist/registComplete";
@@ -113,5 +113,41 @@ public class MybatisController {
         }
         model.addAttribute("deleteMessage", "削除が完了しました。");
         return "delete/deleteComplete";
+    }
+
+    /**
+     * 情報を変更するユーザ選択
+     */
+    @GetMapping("/userSelect")
+    public String userSelect() {
+
+        return "update/userSelect";
+    }
+
+    /**
+     * 変更内容入力画面
+     */
+    @GetMapping("/userUpdate")
+    public String update(@RequestParam("id") int id, Model model) {
+
+        try {
+            userDto.setId(id);
+            userDto = userLogic.findUser(userDto);
+            model.addAttribute("userDto", userDto);
+        } catch (UserNotFoundException e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            return "update/userUpdate";
+        }
+        return "update/userUpdate";
+    }
+
+    /**
+     * ユーザ登録完了画面表示
+     */
+    @PostMapping("/updateComplete")
+    public String updateComplete(@ModelAttribute UserDto userDto) {
+
+        userLogic.updateUser(userDto);
+        return "update/updateComplete";
     }
 }
